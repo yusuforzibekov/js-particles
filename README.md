@@ -1,1 +1,2 @@
 # js-particles
+This project is created from practicing `JavaScript`. So you will able to access independently. I will recommend to use it for your websites as a template. So enjoy the view. Hope you will click the star button for our promotion. You will able to view the project opening the link in description section rather than cloning it into your computer. So i wish the best. 
