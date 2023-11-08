@@ -36,6 +36,7 @@ class Particle {
         ctx.fillStyle = '#8c5523';
         ctx.fill();
     }
+
     // CHECK PARTICLE POSITION, CHECK MOUSE POSITION, MOVE THE PARTICLE, DRAW THE PARTICLE
     update() {
         // CHECK IF PARTICLE IS STILL WITHIN CANVAS
@@ -45,27 +46,34 @@ class Particle {
         if(this.y > canvas.height || this.y < 0) {
             this.directionY = -this.directionY;
         }
-        // CHECK COLLISION DIRECTION - MOUSE POSITION / PARTICLE POSITION
+
+        // Calculate distance between particle and mouse
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
-        if(distance < mouse.radius + this.size) {
-            if(mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-                this.x += 10;
+
+        // Acceleration factor based on distance
+        let acceleration = (mouse.radius - distance) / mouse.radius;
+
+        if (distance < mouse.radius + this.size) {
+            if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+                this.x += 10 * acceleration;
             }
-            if(mouse.x > this.x && this.x > this.size * 10) {
-                this.x -= 10;
+            if (mouse.x > this.x && this.x > this.size * 10) {
+                this.x -= 10 * acceleration;
             }
-            if(mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-                this.y += 10;
+            if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+                this.y += 10 * acceleration;
             }
-            if(mouse.y > this.y && this.y > this.size * 10) {
-                this.y -= 10;
+            if (mouse.y > this.y && this.y > this.size * 10) {
+                this.y -= 10 * acceleration;
             }
         }
-        // MOVE PARTICLE 
+
+        // MOVE PARTICLE
         this.x += this.directionX;
         this.y += this.directionY;
+
         // DRAW PARTICLE
         this.draw();
     }
