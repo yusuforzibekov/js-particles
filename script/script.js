@@ -47,12 +47,12 @@ class Particle {
             this.directionY = -this.directionY;
         }
 
-        // Calculate distance between particle and mouse
+        // CALCUATE DISTANCE BETWEEN MOUSE AND PARTICLE
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Acceleration factor based on distance
+        // ACCELERATION FACTOR BASED ON DISTANCE
         let acceleration = (mouse.radius - distance) / mouse.radius;
 
         if (distance < mouse.radius + this.size) {
